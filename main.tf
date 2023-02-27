@@ -9,7 +9,7 @@ resource "azuread_application" "main" {
     requested_access_token_version = 1
   }
   dynamic "app_role" {
-    for_each = var.grafana_roles ? var.app_roles : var.custom_app_roles
+    for_each = var.app_roles
 
 
     content {
@@ -65,7 +65,7 @@ resource "azuread_service_principal" "main" {
 resource "azuread_app_role_assignment" "main" {
   for_each = var.roles
 
-  app_role_id         = each.value.app_role_id ##azuread_service_principal.main.app_role_ids["Admin"]
+  app_role_id         = each.value.app_role_id
   principal_object_id = each.value.principal_object_id
   resource_object_id  = azuread_service_principal.main.object_id
 }

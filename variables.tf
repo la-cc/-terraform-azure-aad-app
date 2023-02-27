@@ -3,18 +3,6 @@ variable "display_name" {
   description = "The display name for the application."
 }
 
-variable "grafana_roles" {
-  type    = bool
-  default = true
-
-  description = <<-EOT
-  "By default, the roles are created for Grafana, since the app registration was primarily created for it."
-
-  If you want to use a custom role or role set, please set the variable grafana_roles to false and define custom_app_roles when calling this module.
-
-  EOT
-
-}
 
 
 variable "redirect_uris" {
@@ -27,7 +15,7 @@ variable "redirect_uris" {
 variable "logout_url" {
 
   type        = string
-  default     = "https://www.hamburg-port-authority.de/de/"
+  default     = "https://www.example.de"
   description = "The URL that will be used by Microsoft's authorization service to sign out a user using front-channel, back-channel or SAML logout protocols."
 
 }
@@ -158,36 +146,7 @@ variable "app_roles" {
 
 
   }))
-  default = {
-
-    "grafana_viewer" = {
-      allowed_member_types = ["User"]
-      description          = "Grafana read only Users"
-      display_name         = "Grafana Viewer"
-      enabled              = true
-      id                   = "5ece0e92-30f6-4c31-8c94-e7195c20f668"
-      value                = "Viewer"
-    },
-
-    "grafana_editor" = {
-      allowed_member_types = ["User"]
-      description          = "Grafana Editor Users"
-      display_name         = "Grafana Editor"
-      enabled              = true
-      id                   = "2b2d3ad4-1c78-45db-a077-909f755c36aa"
-      value                = "Editor"
-    },
-
-    "grafana_admin" = {
-      allowed_member_types = ["User"]
-      description          = "Grafana admin Userss"
-      display_name         = "Grafana Admin"
-      enabled              = true
-      id                   = "e15be93c-edc1-4b89-ad19-c5f143de6ebd"
-      value                = "Admin"
-    }
-
-  }
+  default = {}
 
   description = <<-EOT
     List of app_roles to configure app_role in for a aad application.
@@ -215,28 +174,6 @@ variable "app_roles" {
       }
 
     }
-
-   Explanation:
-   A collection of app_role blocks as documented below. For more information see official documentation on Application Roles.
-
-  EOT
-}
-
-variable "custom_app_roles" {
-  type = map(object({
-    allowed_member_types = list(string)
-    description          = string
-    display_name         = string
-    enabled              = bool
-    id                   = string
-    value                = string
-
-
-  }))
-  default = {}
-
-  description = <<-EOT
-    List of app_roles to configure app_role in for a aad application.
 
    Explanation:
    A collection of app_role blocks as documented below. For more information see official documentation on Application Roles.
