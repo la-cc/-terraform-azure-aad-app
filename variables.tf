@@ -15,7 +15,7 @@ variable "redirect_uris" {
 variable "logout_url" {
 
   type        = string
-  default     = "https://www.example.de"
+  default     = "https://github.com/la-cc"
   description = "The URL that will be used by Microsoft's authorization service to sign out a user using front-channel, back-channel or SAML logout protocols."
 
 }
@@ -60,7 +60,7 @@ variable "required_resource_access" {
 
       resource_access = [
         {
-          id   = "e1fe6dd8-ba31-4d61-89e7-88639da4683d" #used.read
+          id   = "e1fe6dd8-ba31-4d61-89e7-88639da4683d" #user.read
           type = "Scope"
         },
 
