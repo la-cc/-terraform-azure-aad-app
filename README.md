@@ -5,7 +5,7 @@ The module is used to deploy azure over terraform with a default setup (Infrastr
 # Exmaple Use of Modul:
 
     module "argo_aad_app" {
-    source = "github.com/la-cc/terraform-azure-aad-app?ref=1.0.0"
+    source = "github.com/la-cc/terraform-azure-aad-app?ref=1.0.2"
 
     app_roles                    = var.app_roles
     display_name                 = var.display_name
